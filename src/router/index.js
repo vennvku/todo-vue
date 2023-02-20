@@ -1,20 +1,43 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+
+import home from "../pages/home";
+import transactions from "../pages/transactions";
+import transactiondetail from "../pages/transaction-detail";
+import notfound from "../pages/404";
+
+import reactiontimergame from "../pages/reaction-timer-game";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "overview-route",
+    component: home,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/transactions",
+    name: "transaction-route",
+    // meta: {
+    //   layout: "auth",
+    // },
+    component: transactions,
+  },
+  {
+    path: "/transactions/:id",
+    name: "transaction-detail-route",
+    component: transactiondetail,
+  },
+  {
+    path: "/react-timer-game",
+    name: "react-timer-game",
+    component: reactiontimergame,
+  },
+  {
+    path: "/ts",
+    redirect: "/transactions",
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    component: notfound,
   },
 ];
 
